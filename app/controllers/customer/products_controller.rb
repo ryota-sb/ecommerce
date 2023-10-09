@@ -5,6 +5,7 @@ class Customer::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @cart_item = CartItem.new
   end
 
   private
@@ -16,6 +17,6 @@ class Customer::ProductsController < ApplicationController
 
     return Product.price_high_to_low, 'price_high_to_low' if params[:price_high_to_low]
 
-    return Product.price_low_to_high, 'price_low_to_high' if params[:price_low_to_high]
+    [Product.price_low_to_high, 'price_low_to_high'] if params[:price_low_to_high]
   end
 end
